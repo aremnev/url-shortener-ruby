@@ -1,6 +1,5 @@
 class ShortedUrl < ActiveRecord::Base
-  attr_accessible :follows, :ulr
-
+  attr_accessible :follows, :url
   def name
     return ShortedUrlHelper.encode(self.id)
   end
