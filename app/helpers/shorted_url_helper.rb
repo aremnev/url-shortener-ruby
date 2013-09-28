@@ -1,7 +1,7 @@
 ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).join
 
 module ShortedUrlHelper
-  def encode(id)
+  def self.encode(id)
     return nil if (id == nil)
     return ALPHABET[0] if id == 0
     shortedUrl = ''
@@ -12,7 +12,7 @@ module ShortedUrlHelper
     end
     shortedUrl.reverse
   end
-  def decode(shortedUrl)
+  def self.decode(shortedUrl)
     i = 0
     base = ALPHABET.length
     shortedUrl.each_char { |c| i = i * base + ALPHABET.index(c) }
