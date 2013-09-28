@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  ulr: MyString
+  follows: 1
+
+two:
+  ulr: MyString
+  follows: 1
