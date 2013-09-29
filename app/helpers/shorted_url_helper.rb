@@ -1,4 +1,5 @@
 ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).join
+URL_REGEX = /^(([^:\/?#]+):)?(\/\/([^\/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
 
 module ShortedUrlHelper
   def self.encode(id)

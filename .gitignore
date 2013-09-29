@@ -2,4 +2,3 @@
 tmp/
 log/
 /config/application.yml
-db/migrate/*
