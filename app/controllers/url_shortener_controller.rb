@@ -17,6 +17,8 @@ class UrlShortenerController < ApplicationController
       render :status => :not_found, :text => '404: NOT FOUND!'
       return;
     end
+    shorted_url.follows = shorted_url.follows + 1
+    shorted_url.save
     redirect_to shorted_url.url
   end
 
