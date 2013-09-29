@@ -1,4 +1,6 @@
 UrlShortenerRuby::Application.routes.draw do
+  match '/shorten', to: 'UrlShortener#shorten', via: [:get, :post]
+  get '/:shortenUrl', to: 'UrlShortener#url'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
