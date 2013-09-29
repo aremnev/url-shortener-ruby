@@ -16,7 +16,7 @@ class ShortedUrlTest < ActiveSupport::TestCase
     assert_equal(0, loadedUrl.follows)
   end
   test 'ShortedUrl create and find by name' do
-    shortedUrl = ShortedUrl.new(:url => 'http://ya.ru')
+    shortedUrl = ShortedUrl.create(:url => 'http://ya.ru')
     loadedUrl = ShortedUrl.find_by_name(shortedUrl.name)
     assert_equal(shortedUrl.url, loadedUrl.url, 'urls must be same')
   end
