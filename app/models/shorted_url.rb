@@ -1,10 +1,11 @@
 require 'cgi'
+require 'uri'
 
 class ShortedUrl < ActiveRecord::Base
   attr_accessible :follows, :url
   attr_accessor :name
 
-  validates :url, presence: true, format: {with: URL_REGEX}
+  validates :url, presence: true, format: {with: URI.regexp}
   validates :follows, presence: true
 
   before_validation {
