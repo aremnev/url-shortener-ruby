@@ -9,7 +9,7 @@
 
   $(function() {
     $('#add_url').click(function() {
-        var url = '<%= shorten_url() %>' + '?url=' + $('#url').val()
+        var url = '<%= shorten_url() %>' + '?url=' + encodeURIComponent($('#url').val())
         $.ajax({
             url: url,
             success: function(data, textStatus, jqXHR ) {
