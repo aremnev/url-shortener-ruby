@@ -2,7 +2,7 @@ class UrlShortenerController < ApplicationController
   def shorten
     shorted_url = ShortedUrl.new(:url => params[:url])
     if shorted_url.save
-      response = {:status => 'success', :url => shorted_url.name }
+      response = {:status => 'success', :url => (root_url() + shorted_url.name) }
       render :status => :created, :json => response.as_json
     else
       response = {:status => 'error', :errors => shorted_url.errors}

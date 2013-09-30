@@ -1,1 +1,24 @@
 <% provide(:title, 'Url shortener') %>
+
+<div>
+    <INPUT id="url" TYPE="text" NAME="url" VALUE="http://" SIZE="40">
+
+    <button class="btn" id="add_url">Add</button>
+</div>
+<script type="text/javascript">
+
+  $(function() {
+    $('#add_url').click(function() {
+        var url = '<%= shorten_url() %>' + '?url=' + $('#url').val()
+        $.ajax({
+            url: url,
+            success: function(data, textStatus, jqXHR ) {
+                alert(data.url)
+            },
+            error: function(data, textStatus, jqXHR ) {
+                alert(textStatus)
+            }
+        })
+    })
+  })
+</script>
