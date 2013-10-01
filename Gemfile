@@ -8,6 +8,7 @@ gem 'rails', '3.2.14'
 gem 'mysql2'
 gem 'google-api-client'
 gem 'httparty'
+gem 'twitter-bootstrap-rails'
 
 
 # Gems used only for assets and not required

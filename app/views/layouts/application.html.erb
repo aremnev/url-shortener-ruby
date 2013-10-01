@@ -10,10 +10,20 @@
 
     <div class="navbar-inner">
       <div class="container">
+        <div class="pull-right">
+          <% if signed_in? %>
+              Hello <%= @user.name %>
+              <a class="btn" href="<%= sign_out_url() %>" data-method="delete">Sign out</a>
+          <% else %>
+              <a class="btn" href="<%= sign_in_link %>">Sign in</a>
+          <% end %>
+        </div>
       </div>
     </div>
 
-    <%= yield %>
+    <div class="row-fluid">
+      <%= yield %>
+    </div>
 
 </body>
 </html>

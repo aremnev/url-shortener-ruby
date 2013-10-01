@@ -1,42 +1,39 @@
 <% provide(:title, 'Url shortener') %>
 
-<div>
+<div class="container">
+    <div class="form-search">
+      <div class="input-append"></div>
+        <input id="url" TYPE="text" NAME="url" SIZE="40" class="search-query input" placeholder="Type UTL here" rel="tooltip">
+        <input class="btn " id="add_url" type="submit" value="Make it smaller"/>
+      </div>
+    </div>
+
+
     <% if signed_in? %>
-      Hello <%= @user.name %> <%= link_to 'Sign out', sign_out_url(), :method => :delete %>
-    <% else %>
-      <%= link_to 'Sign in', sign_in_link %>
-    <% end %>
-</div>
-<div>
-    <INPUT id="url" TYPE="text" NAME="url" VALUE="http://" SIZE="40">
-
-    <button class="btn" id="add_url">Add</button>
-</div>
-
-
-<% if signed_in? %>
-    Yours shorted links:
-    <table class="table table-bordered table-condensed">
-      <thead>
-      <tr>
-        <th style="width: 2%">№</th>
-        <th style="width: 36%">Shorted URL</th>
-        <th style="width: 46%">URL</th>
-        <th style="width: 16%">Follows</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @user_shorted_urls.each_with_index do |shorted_url, index| %>
+        Yours shorted links:
+        <table class="table table-bordered table-condensed">
+          <thead>
           <tr>
-            <td><%= index+1 %></td>
-            <td><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
-            <td><%= shorted_url.url %><td>
-            <td><%= shorted_url.follows %><td>
+            <th style="width: 2%">№</th>
+            <th style="width: 36%">Shorted URL</th>
+            <th style="width: 56%">URL</th>
+            <th style="width: 6%">Follows</th>
           </tr>
-      <% end %>
-      </tbody>
-    </table>
-<% end %>
+          </thead>
+          <tbody>
+          <% @user_shorted_urls.each_with_index do |shorted_url, index| %>
+              <tr>
+                <td><%= index+1 %></td>
+                <td><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
+                <td><%= shorted_url.url %><td>
+                <td><%= shorted_url.follows %><td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
+
+</div>
 
 <script type="text/javascript">
 
