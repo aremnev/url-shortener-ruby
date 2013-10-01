@@ -13,15 +13,8 @@
 
 ActiveRecord::Schema.define(:version => 20130928133023) do
 
-  create_table "shorted_url", :force => true do |t|
-    t.string   "url"
-    t.integer  "follows"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "shorted_urls", :force => true do |t|
-    t.string   "url"
+    t.text   "url"
     t.integer  "follows"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
