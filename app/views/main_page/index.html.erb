@@ -2,7 +2,7 @@
 
 <div>
     <% if signed_in? %>
-      Hello <%= session[:user].name %> <%= link_to 'Sign out', sign_out_url(), :method => :delete %>
+      Hello <%= @user.name %> <%= link_to 'Sign out', sign_out_url(), :method => :delete %>
     <% else %>
       <%= link_to 'Sign in', sign_in_link %>
     <% end %>

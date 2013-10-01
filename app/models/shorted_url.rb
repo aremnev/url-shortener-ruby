@@ -6,7 +6,7 @@ class ShortedUrl < ActiveRecord::Base
   attr_accessible :follows, :url
   attr_accessor :name
 
-  validates :url, presence: true, format: {with: URI.regexp}
+  validates :url, presence: true
   validates :follows, presence: true
 
   before_validation {
@@ -15,7 +15,7 @@ class ShortedUrl < ActiveRecord::Base
   }
 
   def name
-    return ShortedUrlHelper.encode(self.id)
+    ShortedUrlHelper.encode(self.id)
   end
 
   def self.find_by_name(name)
