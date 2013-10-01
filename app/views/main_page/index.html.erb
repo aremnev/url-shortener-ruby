@@ -1,6 +1,13 @@
 <% provide(:title, 'Url shortener') %>
 
 <div>
+    <% if signed_in? %>
+      <%= link_to 'Sign out', sign_out_url(), :method => :delete %>
+    <% else %>
+        <%= link_to 'Sign in', sign_in_url() %>
+    <% end %>
+</div>
+<div>
     <INPUT id="url" TYPE="text" NAME="url" VALUE="http://" SIZE="40">
 
     <button class="btn" id="add_url">Add</button>
