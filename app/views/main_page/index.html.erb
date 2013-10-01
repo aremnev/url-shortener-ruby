@@ -16,6 +16,26 @@
 
 <% if signed_in? %>
     Yours shorted links:
+    <table class="table table-bordered table-condensed">
+      <thead>
+      <tr>
+        <th style="width: 2%">№</th>
+        <th style="width: 36%">Shorted URL</th>
+        <th style="width: 46%">URL</th>
+        <th style="width: 16%">Follows</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @user_shorted_urls.each_with_index do |shorted_url, index| %>
+          <tr>
+            <td><%= index+1 %></td>
+            <td><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
+            <td><%= shorted_url.url %><td>
+            <td><%= shorted_url.follows %><td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
 <% end %>
 
 <script type="text/javascript">

@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131001041938) do
+ActiveRecord::Schema.define(:version => 20131001083312) do
 
   create_table "shorted_urls", :force => true do |t|
     t.text     "url"
     t.integer  "follows"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -2,6 +2,7 @@ require 'cgi'
 require 'uri'
 
 class ShortedUrl < ActiveRecord::Base
+  belongs_to :user
   attr_accessible :follows, :url
   attr_accessor :name
 

@@ -5,7 +5,7 @@ GET_USER_INFO = 'https://www.googleapis.com/oauth2/v2/userinfo?access_token='
 
 module SessionsHelper
   def signed_in?
-    !session[:user].nil?
+    !session[:user_id].nil?
   end
 
   def sign_in_link

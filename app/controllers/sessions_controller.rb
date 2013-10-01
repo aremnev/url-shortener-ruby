@@ -22,17 +22,14 @@ class SessionsController < ApplicationController
 
     user_info = HTTParty.get(GET_USER_INFO + client.authorization.access_token)
     email = user_info['email']
-    user = User.find_by_email(email)
-    if user.nil?
-      user = User.create(:email => email, :name => user_name['given_name'], :family_name => user_name['family_name'])
-    end
+    user = User.find_or_create_by_email_and_name_and_family_name(email, user_name['given_name'], user_name['family_name'])
 
-    session[:user] = user;
+    session[:user_id] = user.id;
     redirect_to :root
   end
 
   def sign_out
-    session[:user] = nil;
+    session[:user_id] = nil;
     redirect_to :root
   end
 end
