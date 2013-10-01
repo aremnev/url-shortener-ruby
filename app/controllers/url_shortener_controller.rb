@@ -2,7 +2,7 @@ class UrlShortenerController < ApplicationController
   def shorten
     shorted_url = ShortedUrl.new(:url => params[:url])
     if !session[:user_id].nil?
-      shorted_url.user= session[:user_id]
+      shorted_url.user= User.find(session[:user_id])
     end
     if shorted_url.save
       response = {:status => 'success', :url => (root_url() + shorted_url.name) }
