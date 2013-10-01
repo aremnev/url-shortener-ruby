@@ -7,6 +7,7 @@ gem 'rails', '3.2.14'
 
 gem 'mysql2'
 gem 'google-api-client'
+gem 'httparty'
 
 
 # Gems used only for assets and not required
