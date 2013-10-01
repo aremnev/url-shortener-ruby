@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
         :authenticated => true
     ).data['name']
 
-    user_info = HTTParty.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + client.authorization.access_token)
+    user_info = HTTParty.get(GET_USER_INFO + client.authorization.access_token)
     email = user_info['email']
     user = User.find_by_email(email)
     if user.nil?
