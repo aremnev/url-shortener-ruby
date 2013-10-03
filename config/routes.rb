@@ -4,5 +4,8 @@ UrlShortenerRuby::Application.routes.draw do
   match '/signout', to: 'Sessions#sign_out', via: [:delete], as: :sign_out
   get '/', to: 'MainPage#index', as: :root
   match '/shorten', to: 'UrlShortener#shorten', via: [:get, :post], as: :shorten
+  match '/shorten', to: 'UrlShortener#delete', via: [:delete], as: :shorten
+
   get '/:shortenUrl', to: 'UrlShortener#url'
+
 end

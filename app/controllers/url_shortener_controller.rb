@@ -13,6 +13,20 @@ class UrlShortenerController < ApplicationController
     end
   end
 
+  def delete
+    if !session[:user_id].nil?
+      shorted_url = ShortedUrl.find(params[:id])
+      if session[:user_id] == shorted_url.user.id
+        shorted_url.destroy
+        #render :status => :no_content
+        #return
+      end
+      #render :status => :bad_request
+    end
+    #render :status => :unauthorized
+    redirect_to :root
+  end
+
   def url
     begin
       shorted_url = ShortedUrl.find_by_name(params[:shortenUrl])
