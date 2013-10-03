@@ -1,10 +1,18 @@
+
 class UrlShortenerController < ApplicationController
+  include SessionsHelper
   def shorten
     shorted_url = ShortedUrl.new(:url => params[:url])
-    if !session[:user_id].nil?
+    if signed_in?
       shorted_url.user= User.find(session[:user_id])
     end
     if shorted_url.save
+      if session[:user_id].nil?
+        if session[:shorted_urls].nil?
+          session[:shorted_urls] = Array.new
+        end
+        session[:shorted_urls].push(shorted_url.id)
+      end
       response = {:status => 'success', :url => (root_url() + shorted_url.name) }
       render :status => :created, :json => response.as_json
     else
@@ -14,16 +22,19 @@ class UrlShortenerController < ApplicationController
   end
 
   def delete
-    if !session[:user_id].nil?
-      shorted_url = ShortedUrl.find(params[:id])
+    shorted_url = ShortedUrl.find(params[:id])
+    if signed_in?
       if session[:user_id] == shorted_url.user.id
         shorted_url.destroy
-        #render :status => :no_content
-        #return
       end
-      #render :status => :bad_request
+    else
+      if session[:shorted_urls].include?(shorted_url.id)
+        if shorted_url.user.nil?
+          shorted_url.destroy
+          session[:shorted_urls].delete(shorted_url.id)
+        end
+      end
     end
-    #render :status => :unauthorized
     redirect_to :root
   end
 

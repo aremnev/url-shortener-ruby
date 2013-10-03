@@ -9,31 +9,29 @@
       </div>
 
       <div>
-        <% if signed_in? %>
-            Yours shorted links:
-            <table class="table table-bordered">
-              <thead>
-                  <tr>
-                    <th>№</th>
-                    <th>Shorted URL</th>
-                    <th>URL</th>
-                    <th>Follows</th>
-                    <th> </th>
-                  </tr>
-              </thead>
-              <tbody>
-              <% @user_shorted_urls.each_with_index do |shorted_url, index| %>
-                  <tr>
-                    <td><%= index + 1 %></td>
-                    <td><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
-                    <td><%= shorted_url.url %></td>
-                    <td><%= shorted_url.follows %></td>
-                    <td><a class="btn" href="<%= shorten_url + '?id=' + shorted_url.id.to_s %>" data-method="delete">Delete</a></td>
-                  </tr>
-              <% end %>
-              </tbody>
-            </table>
-        <% end %>
+        Yours shorted links:
+        <table class="table table-bordered">
+          <thead>
+              <tr>
+                <th>№</th>
+                <th>Shorted URL</th>
+                <th>URL</th>
+                <th>Follows</th>
+                <th> </th>
+              </tr>
+          </thead>
+          <tbody>
+          <% @user_shorted_urls.each_with_index do |shorted_url, index| %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
+                <td><%= shorted_url.url %></td>
+                <td><%= shorted_url.follows %></td>
+                <td><a class="btn" href="<%= shorten_url + '?id=' + shorted_url.id.to_s %>" data-method="delete">Delete</a></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
       </div>
 </div>
 
