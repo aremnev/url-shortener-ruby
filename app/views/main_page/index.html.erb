@@ -3,7 +3,7 @@
 <div class="container">
       <div class="container">
         <div class="input-append pull-right" style="height: 30px; padding-top: 10px">
-          <input class="input-xlarge" id="url" type="text" name="url" placeholder="Type UTL here" rel="tooltip">
+          <input class="input-xlarge" id="url" type="text" name="url" placeholder="Type UTL here" rel="tooltip" value="http://">
           <input class="btn" id="add_url" type="submit" value="Make it shorter" style="height: 100%"/>
         </div>
       </div>
@@ -43,7 +43,7 @@
         $.ajax({
             url: url,
             success: function(data, textStatus, jqXHR ) {
-                alert(data.url)
+                window.reload()
             },
             error: function(data, textStatus, jqXHR ) {
                 alert(textStatus)
