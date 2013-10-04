@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
         :authenticated => true
     ).data['name']
 
-    user_info = HTTParty.get(GET_USER_INFO + @client.authorization.access_token)
+    user_info = HTTParty.get(GET_USER_INFO + client.authorization.access_token)
     email = user_info['email']
     user = User.find_or_create_by_email_and_name_and_family_name(email, user_name['given_name'], user_name['family_name'])
 
