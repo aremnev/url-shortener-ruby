@@ -43,7 +43,7 @@
         $.ajax({
             url: url,
             success: function(data, textStatus, jqXHR ) {
-                window.reload()
+                window.location.reload()
             },
             error: function(data, textStatus, jqXHR ) {
                 alert(textStatus)
