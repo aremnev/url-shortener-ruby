@@ -1,8 +1,9 @@
+require 'cgi'
 
 class UrlShortenerController < ApplicationController
   include SessionsHelper
   def shorten
-    shorted_url = ShortedUrl.new(:url => params[:url])
+    shorted_url = ShortedUrl.new(:url => CGI::unescape(params[:url]))
     if signed_in?
       shorted_url.user= User.find(session[:user_id])
     end
@@ -47,7 +48,7 @@ class UrlShortenerController < ApplicationController
     end
     shorted_url.follows = shorted_url.follows + 1
     shorted_url.save
-    redirect_to shorted_url.url
+    redirect_to CGI::escape(shorted_url.url)
   end
 
 end

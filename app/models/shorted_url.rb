@@ -1,4 +1,3 @@
-require 'cgi'
 require 'uri'
 
 class ShortedUrl < ActiveRecord::Base
@@ -10,7 +9,6 @@ class ShortedUrl < ActiveRecord::Base
   validates :follows, presence: true
 
   before_validation {
-    self.url = CGI::unescape(self.url) if self.url != nil
     self.follows = 0 if self.follows == nil
   }
 
