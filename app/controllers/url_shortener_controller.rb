@@ -48,11 +48,9 @@ class UrlShortenerController < ApplicationController
     end
     shorted_url.follows = shorted_url.follows + 1
     shorted_url.save
-    begin
-      redirect_to shorted_url.url
-    rescue
-      render :text => 'you were ' + link_to('redirected', shorted_url.url)
-    end
+    redirect_to shorted_url.url
+  rescue
+    render :text => 'you were ' + link_to('redirected', shorted_url.url)
   end
 
 end

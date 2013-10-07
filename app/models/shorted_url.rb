@@ -5,8 +5,8 @@ class ShortedUrl < ActiveRecord::Base
   attr_accessible :follows, :url
   attr_accessor :name
 
-  validates :url, presence: true
-  validates :follows, presence: true, format: {with: URI::regexp}
+  validates :url, presence: true, format: {with: /^#{URI::regexp(['http', 'https'])}$/}
+  validates :follows, presence: true
 
   before_validation {
     self.follows = 0 if self.follows == nil
