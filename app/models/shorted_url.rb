@@ -6,7 +6,7 @@ class ShortedUrl < ActiveRecord::Base
   attr_accessor :name
 
   validates :url, presence: true
-  validates :follows, presence: true
+  validates :follows, presence: true, format: {with: URI::regexp}
 
   before_validation {
     self.follows = 0 if self.follows == nil
