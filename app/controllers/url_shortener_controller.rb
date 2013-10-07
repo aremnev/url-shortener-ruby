@@ -53,4 +53,18 @@ class UrlShortenerController < ApplicationController
     render :text => 'you were ' + link_to('redirected', shorted_url.url)
   end
 
+  def expand
+    @short_url = params[:url]
+    begin
+      @shorted_url = ShortedUrl.find_by_name(@short_url)
+      response = {:status => 'success', :shorted_url => (root_url() + @shorted_url.name),
+                  :expanded_url => @shorted_url.url, :follows => @shorted_url.follows }
+      render :status => :ok, :json => response.as_json
+    rescue
+      response = {:status => 'error', :shorted_url => (root_url() + @short_url),
+                  :errors => ['Not found'] }
+      render :status => :not_found, :json => response.as_json
+    end
+  end
+
 end

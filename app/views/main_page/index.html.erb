@@ -2,6 +2,10 @@
 
 <div class="container">
       <div class="container">
+        <div class="input-append pull-left" style="height: 30px; padding-top: 10px">
+          <input class="input-xlarge" id="url_to_expand" type="text" name="url" placeholder="Type shorted url here" rel="tooltip">
+          <input class="btn" id="expand_url" type="submit" value="Expand" style="height: 100%"/>
+        </div>
         <div class="input-append pull-right" style="height: 30px; padding-top: 10px">
           <input class="input-xlarge" id="url" type="text" name="url" placeholder="Type UTL here" rel="tooltip" value="http://">
           <input class="btn" id="add_url" type="submit" value="Make it shorter" style="height: 100%"/>
@@ -35,20 +39,53 @@
       </div>
 </div>
 
+<div class="modal hide" id="expand_succes">
+  <div style="padding: 30px">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <div>
+          <h4>Shorted url:</h4>
+          <input type="text" class="input-xlarge" id="shorted_url">
+      </div>
+      <div>
+          <h4>Expanded url:</h4>
+          <input type="text" class="input-xlarge" id="expanded_url">
+      </div>
+      <div>
+          <h4>Follows:</h4>
+          <input type="text" class="input-xlarge" id="follows">
+      </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 
   $(function() {
-    $('#add_url').click(function() {
-        var url = '<%= shorten_url() %>' + '?url=' + encodeURIComponent($('#url').val())
-        $.ajax({
-            url: url,
-            success: function(data, textStatus, jqXHR ) {
-                window.location.reload()
-            },
-            error: function(data, textStatus, jqXHR ) {
-                alert(textStatus)
-            }
-        })
-    })
+      $('#add_url').click(function() {
+          var url = '<%= shorten_url() %>' + '?url=' + encodeURIComponent($('#url').val())
+          $.ajax({
+              url: url,
+              success: function(data, textStatus, jqXHR ) {
+                  window.location.reload()
+              },
+              error: function(data, textStatus, jqXHR ) {
+                  alert(textStatus)
+              }
+          })
+      })
+      $('#expand_url').click(function() {
+          var url = '<%= expand_url() %>' + '?url=' + $('#url_to_expand').val()
+          $.ajax({
+              url: url,
+              success: function(data, textStatus, jqXHR ) {
+                  $('#shorted_url').val(data.shorted_url)
+                  $('#expanded_url').val(data.expanded_url)
+                  $('#follows').val(data.follows)
+                  $('#expand_succes').modal()
+              },
+              error: function(data, textStatus, jqXHR ) {
+                  alert('Not found')
+              }
+          })
+      })
   })
 </script>

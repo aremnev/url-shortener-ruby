@@ -5,6 +5,7 @@ UrlShortenerRuby::Application.routes.draw do
   get '/', to: 'MainPage#index', as: :root
   match '/api/shorten', to: 'UrlShortener#shorten', via: [:get, :post], as: :shorten
   match '/api/shorten', to: 'UrlShortener#delete', via: [:delete], as: :shorten
+  match '/api/expand', to: 'UrlShortener#expand', via: [:get, :post], as: :expand
 
   get '/:shortenUrl', to: 'UrlShortener#url'
 
