@@ -56,26 +56,14 @@ class UrlShortenerController < ApplicationController
   end
 
   def url
-    # можно сократить код с блоком begin-rescue-end, использовав короткий синтаксис
-    #
-    # shorted_url = ShortedUrl.find_by_name(params[:shortenUrl]) rescue nil
-    # if shorted_url
-    # ...
-    #
-    # такая же ситуация в методе #expand ниже
-    begin
-      shorted_url = ShortedUrl.find_by_name(params[:shortenUrl])
-    rescue
+    shorted_url = ShortedUrl.find_by_name(params[:shortenUrl]) rescue nil
+
+    if shorted_url.nil?
       # @mkolganov
-      # логичнее было бы написать return render ... в одну строку
       # и сделать view вместо отправки текста или переместить текст в локализацию
-      render :status => :not_found, :text => '404: NOT FOUND!'
-      return;
+      return render :status => :not_found, :text => '404: NOT FOUND!'
     end
-    # @mkolganov
-    # можно убрать логику в модель, создав в ней метод #touch, например
-    shorted_url.follows = shorted_url.follows + 1
-    shorted_url.save
+    shorted_url.touch
     redirect_to shorted_url.url
   rescue
     # @mkolganov
@@ -85,16 +73,17 @@ class UrlShortenerController < ApplicationController
 
   def expand
     @short_url = params[:url]
-    begin
-      @shorted_url = ShortedUrl.find_by_name(@short_url)
-      response = {:status => 'success', :shorted_url => (root_url() + @shorted_url.name),
-                  :expanded_url => @shorted_url.url, :follows => @shorted_url.follows }
-      render :status => :ok, :json => response.as_json
-    rescue
+    @shorted_url = ShortedUrl.find_by_name(@short_url) rescue nil
+
+    if @shorted_url.nil?
       response = {:status => 'error', :shorted_url => (root_url() + @short_url),
                   :errors => ['Not found'] }
       render :status => :not_found, :json => response.as_json
     end
+
+    response = {:status => 'success', :shorted_url => (root_url() + @shorted_url.name),
+                :expanded_url => @shorted_url.url, :follows => @shorted_url.follows }
+    render :status => :ok, :json => response.as_json
   end
 
 end

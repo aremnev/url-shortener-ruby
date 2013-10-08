@@ -22,4 +22,9 @@ class ShortedUrl < ActiveRecord::Base
     id = ShortedUrlHelper.decode(name)
     find(id)
   end
+
+  def touch
+    self.follows = self.follows + 1
+    save
+  end
 end
