@@ -1,3 +1,6 @@
+# @mkolganov
+# Подобные константы удобнее вынести в конфиг. Например, можно использовать
+# библиотеку https://github.com/railsjedi/rails_config
 CLIENT_ID = '817617958445.apps.googleusercontent.com'
 CLIENT_SECRET = 'efzv6jH5hP9bfy6jOy84lb_7'
 SCOPE = 'https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email'
@@ -9,6 +12,8 @@ module SessionsHelper
   end
 
   def sign_in_link
+    # @mkolganov
+    # следующую строчку тоже неплохо было бы сделать конфигурируемой
     'https://accounts.google.com/o/oauth2/auth?' +
         'scope=' + SCOPE + '&' +
         'state=%2Fprofile&' +
