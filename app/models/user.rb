@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     client.authorization.client_secret = CLIENT_SECRET
     client.authorization.scope = SCOPE
     plus = client.discovered_api('plus')
-    client.authorization.redirect_uri = sign_in_url;
+    client.authorization.redirect_uri = sign_in_url
 
     client.authorization.code = code
     client.authorization.fetch_access_token!

@@ -3,7 +3,7 @@ require 'google/api_client'
 class SessionsController < ApplicationController
 
   def sign_in
-    user = User.sign_in(params[:code], sign_in_url(), session)
+    user = User.sign_in(params[:code], sign_in_url, session)
     session[:user_id] = user.id if user.present?
     redirect_to :root
   end
