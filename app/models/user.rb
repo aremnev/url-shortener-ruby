@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }
   validates :name, presence: true
 
-  def self.sign_in(code)
+  def self.sign_in(code, sign_in_url, session)
     client = Google::APIClient.new({application_name: 'Url shortener'})
     client.authorization.client_id = CLIENT_ID
     client.authorization.client_secret = CLIENT_SECRET
