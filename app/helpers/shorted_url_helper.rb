@@ -11,7 +11,7 @@ module ShortedUrlHelper
     end
     shortedUrl.reverse
   end
-  # @mkolganov: мелочь - перевод строки между методами
+
   def self.decode(shortedUrl)
     i = 0
     base = ALPHABET.length

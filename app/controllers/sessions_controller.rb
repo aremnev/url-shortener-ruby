@@ -29,18 +29,16 @@ class SessionsController < ApplicationController
 
     user_info = HTTParty.get(GET_USER_INFO + client.authorization.access_token)
     email = user_info['email']
-    # @mkolganov
-    # слишком длинное имя метода. в следующей версии рельс(4) это объявлено как deprecated, нужно будет использовать
-    # метод find_by field: value
-    # но в данном случае рельсы версии 3, вместо find_by можно использовать
-    # User.where(email: email, name: user_name['given_name'], family_name: user_name['family_name']).first_or_create
-    user = User.find_or_create_by_email_and_name_and_family_name(email, user_name['given_name'], user_name['family_name'])
+    user = User.find_or_create_by_email(email)
+    user.name= user_name['given_name']
+    user.family_name= user_name['family_name']
+    user.save
 
     session[:user_id] = user.id;
     if !session[:shorted_urls].nil?
       session[:shorted_urls].each do |id|
         shorted_ulr = ShortedUrl.find(id)
-        shorted_ulr.user = user
+        shorted_ulr.user= user
         shorted_ulr.save
       end
       session[:shorted_urls] = nil
