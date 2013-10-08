@@ -38,13 +38,11 @@ class SessionsController < ApplicationController
 
     session[:user_id] = user.id;
     if !session[:shorted_urls].nil?
-      # @mkolganov
-      # про стиль блоков уже писал в controllers/main_page_controller.rb
-      session[:shorted_urls].each{ |id|
+      session[:shorted_urls].each do |id|
         shorted_ulr = ShortedUrl.find(id)
         shorted_ulr.user = user
         shorted_ulr.save
-      }
+      end
       session[:shorted_urls] = nil
     end
 

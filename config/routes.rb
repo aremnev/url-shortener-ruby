@@ -10,7 +10,7 @@ UrlShortenerRuby::Application.routes.draw do
   # в нескольких форматах. и это кажется более правильным - меньше дублирования кода
   match '/api/signin', to: 'Sessions#sign_in', via: [:get, :post], as: :sign_in
   match '/api/signout', to: 'Sessions#sign_out', via: [:delete], as: :sign_out
-  get '/', to: 'MainPage#index', as: :root
+  get '/', to: 'Pages#index', as: :root
   match '/api/shorten', to: 'UrlShortener#shorten', via: [:get, :post], as: :shorten
   match '/api/shorten', to: 'UrlShortener#delete', via: [:delete], as: :shorten
   match '/api/expand', to: 'UrlShortener#expand', via: [:get, :post], as: :expand

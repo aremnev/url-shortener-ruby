@@ -9,14 +9,12 @@ gem 'google-api-client'
 gem 'httparty'
 gem 'twitter-bootstrap-rails'
 
-# @mkolganov
-# Если постгрес используется везде, можно написать без групп, просто - gem "pg"
 group :production do
   gem 'pg'
 end
 
 group :development do
-  gem 'pg'
+  gem 'mysql2'
 end
 
 

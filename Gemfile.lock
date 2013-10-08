@@ -78,6 +78,7 @@ GEM
     multi_json (1.8.0)
     multi_xml (0.5.4)
     multipart-post (1.2.0)
+    mysql2 (0.3.13)
     pg (0.16.0-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -144,6 +145,7 @@ DEPENDENCIES
   google-api-client
   httparty
   jquery-rails
+  mysql2
   pg
   rails (= 3.2.14)
   sass-rails (~> 3.2.3)

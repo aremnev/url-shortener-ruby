@@ -1,8 +1,5 @@
-# @mkolganov
-# Эту константу лучше поместить внутрь модуля ShortedUrlHelper
-ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).join
-
 module ShortedUrlHelper
+  ALPHABET = (('a'..'z').to_a + ('A'..'Z').to_a + (0..9).to_a).join
   def self.encode(id)
     return nil if (id == nil)
     return ALPHABET[0] if id == 0
