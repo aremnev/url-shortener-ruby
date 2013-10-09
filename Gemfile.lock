@@ -79,6 +79,7 @@ GEM
     multi_xml (0.5.4)
     multipart-post (1.2.0)
     mysql2 (0.3.13)
+    pg (0.16.0)
     pg (0.16.0-x86-mingw32)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -138,6 +139,7 @@ GEM
     uuidtools (2.1.4)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
