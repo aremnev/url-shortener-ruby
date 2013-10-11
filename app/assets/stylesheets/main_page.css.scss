@@ -2,8 +2,38 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+html {
+  min-width:650px;
+}
+body {
+  background:url(amethyst011-2.jpg);
+}
+
+.navbar-inner {
+  background:url(amethyst012-3.jpg);
+  border-bottom: 3px dashed white;
+    position:relative;
+}
+
 .container {
   padding-top: 5px;
+}
+
+.main-title {
+  text-align: center;
+  margin:25px 0;
+  color:#ece5f7;
+}
+
+.scissor {
+  position:absolute;
+  bottom:-10px;
+  left:10px;
+}
+
+.sign-in {
+  float:right;
+  margin:20px 20px 0 0;
 }
 
 .input-append {
@@ -13,4 +43,58 @@
 
 #expand-succes div {
   padding: 30px;
+}
+
+.table-bordered {
+  border: 1px solid #666;
+    th, td {
+      border-left: 1px solid #666;
+      border-top: 1px solid #666;
+    }
+}
+.td__short-url, .td__url {
+  width:40%;
+}
+.td__delete, .td__follows {
+  width:15%;
+}
+.td__num {
+  width:5%;
+    border-left:0 !important;
+}
+
+.table__hide, .wrap-input-expand__hide {
+  display:none;
+}
+
+.table__visible, .wrap-input-expand__visible {
+  display:block;
+}
+
+.wrap-input-shorten {
+  margin:50px auto;
+}
+
+.input__shorten {
+  padding:8px 10px !important;
+}
+.btn__shorten {
+  padding:10px 20px !important;
+  font-size:16px;
+}
+.input__shorten, .btn__shorten {
+  display:block !important;
+  margin:10px auto !important;
+}
+
+.btn__expand {
+  vertical-align: top;
+  margin-left: -2px;
+  border-radius: 0 4px 4px 0;
+}
+
+@media screen and (max-width: 980px) {
+  .input-xlarge {
+    width: 200px;
+  }
 }

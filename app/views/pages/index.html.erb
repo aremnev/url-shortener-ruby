@@ -1,42 +1,49 @@
 <% provide(:title, 'Url shortener') %>
 
+ <div class="sign-in">
+          <% if signed_in? %>
+              Hello <%= @user.name %>
+              <a class="btn" href="<%= sign_out_url() %>" data-method="delete">Sign out</a>
+          <% else %>
+              <a class="btn" href="<%= sign_in_link %>">Sign in</a>
+          <% end %>
+        </div>
 <div class="container">
       <div class="container">
-        <div class="input-append pull-left">
-          <input class="input-xlarge" id="url_to_expand" type="text" name="url" placeholder="Type shorted url here" rel="tooltip">
-          <input class="btn" id="expand_url" type="submit" value="Expand"/>
-        </div>
-        <div class="input-append pull-right">
-          <input class="input-xlarge" id="url" type="text" name="url" placeholder="Type UTL here" rel="tooltip" value="http://">
-          <input class="btn" id="add_url" type="submit" value="Make it shorter"/>
+        <div class="wrap-input-shorten">
+          <input class="input-xxlarge input__shorten" id="url" type="text" name="url" placeholder="Type UTL here" rel="tooltip" value="http://">
+          <input class="btn btn__shorten" id="add_url" type="submit" value="Shorten!"/>
         </div>
       </div>
 
-      <div>
-        Yours shorted links:
-        <table class="table table-bordered">
-          <thead>
-              <tr>
-                <th>№</th>
-                <th>Shorted URL</th>
-                <th>URL</th>
-                <th>Follows</th>
-                <th> </th>
-              </tr>
-          </thead>
-          <tbody>
-          <% @user_shorted_urls.each_with_index do |shorted_url, index| %>
-              <tr>
-                <td><%= index + 1 %></td>
-                <td><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
-                <td><%= shorted_url.url %></td>
-                <td><%= shorted_url.follows %></td>
-                <td><a class="btn" href="<%= shorten_url + '?id=' + shorted_url.id.to_s %>" data-method="delete">Delete</a></td>
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
-      </div>
+        <div class="<% if @user_shorted_urls.blank? %> table__hide <% else %> table__visible <% end %>">
+            <h4>Yours shorted links:</h4>
+            <table class="table table-bordered">
+              <thead>
+                  <tr>
+                    <th class="td__num">№</th>
+                    <th class="td__short-url">Shorted URL</th>
+                    <th class="td__url">URL</th>
+                    <th class="td__follows">Follows</th>
+                    <th class="td__delete"> </th>
+                  </tr>
+              </thead>
+              <tbody>
+              <% @user_shorted_urls.each_with_index do |shorted_url, index| %>
+                  <tr>
+                    <td class="td__num"><%= index + 1 %></td>
+                    <td class="td__short-url"><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
+                    <td class="td__url"><%= shorted_url.url %></td>
+                    <td class="td__follows"><%= shorted_url.follows %></td>
+                    <td class="td__delete"><a class="btn" href="<%= shorten_url + '?id=' + shorted_url.id.to_s %>" data-method="delete">Delete</a></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+        </div>
+           <div class="<% if @user_shorted_urls.blank? %> wrap-input-expand__hide <% else %> wrap-input-expand__visible <% end %>">
+          <input class="input-xlarge input__expand" id="url_to_expand" type="text" name="url" placeholder="Type shorted url here" rel="tooltip"><input class="btn btn__expand" id="expand_url" type="submit" value="Expand"/>
+        </div>
 </div>
 
 <div class="modal hide" id="expand_succes">
