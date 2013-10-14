@@ -12,7 +12,13 @@ body {
 .navbar-inner {
   background:url(amethyst012-3.jpg);
   border-bottom: 3px dashed white;
-    position:relative;
+  position:relative;
+  img {
+    position:absolute;
+    bottom:-40%;
+    left:10px;
+    width:8%;
+  }
 }
 
 .container {
@@ -22,18 +28,41 @@ body {
 .main-title {
   text-align: center;
   margin:25px 0;
+  font-family:'Andika', sans-serif;
   color:#ece5f7;
-}
-
-.scissor {
-  position:absolute;
-  bottom:-10px;
-  left:10px;
 }
 
 .sign-in {
   float:right;
   margin:20px 20px 0 0;
+}
+
+.btn__style {
+  font-family:'Andika', sans-serif;
+  background:url(amethyst012-3.jpg);
+  border: 2px dashed white;  
+  color:white;
+  background-position:0 0;
+  color:white;        
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  &:active {
+    box-shadow: inset 0 5px 4px rgba(0,0,0,.35); 
+  }
+  &:focus {
+    outline:none;
+  }
+  &:hover {
+    text-decoration:none;
+    color:white;
+  }
 }
 
 .input-append {
@@ -75,12 +104,12 @@ body {
   margin:50px auto;
 }
 
-.input__shorten {
-  padding:8px 10px !important;
+.wrap-input-shorten .input__shorten {
+  padding:8px 10px;
 }
 .btn__shorten {
-  padding:10px 20px !important;
-  font-size:16px;
+  padding:10px 20px;
+  font-size:18px;
 }
 .input__shorten, .btn__shorten {
   display:block !important;
@@ -93,8 +122,17 @@ body {
   border-radius: 0 4px 4px 0;
 }
 
+.modal {
+  padding: 1em 1.5em;
+}
+
 @media screen and (max-width: 980px) {
   .input-xlarge {
     width: 200px;
   }
+.navbar-inner {
+  img {
+    bottom:-25%;
+  }
+}
 }

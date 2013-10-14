@@ -3,16 +3,16 @@
  <div class="sign-in">
           <% if signed_in? %>
               Hello <%= @user.name %>
-              <a class="btn" href="<%= sign_out_url() %>" data-method="delete">Sign out</a>
+              <a class="btn__style" href="<%= sign_out_url() %>" data-method="delete">Sign out</a>
           <% else %>
-              <a class="btn" href="<%= sign_in_link %>">Sign in</a>
+              <a class="btn__style" href="<%= sign_in_link %>">Sign in</a>
           <% end %>
         </div>
 <div class="container">
       <div class="container">
         <div class="wrap-input-shorten">
           <input class="input-xxlarge input__shorten" id="url" type="text" name="url" placeholder="Type UTL here" rel="tooltip" value="http://">
-          <input class="btn btn__shorten" id="add_url" type="submit" value="Shorten!"/>
+          <input class="btn__shorten btn__style" id="add_url" type="submit" value="Shorten!"/>
         </div>
       </div>
 
@@ -35,14 +35,14 @@
                     <td class="td__short-url"><%= link_to root_url() + shorted_url.name, root_url() + shorted_url.name %></td>
                     <td class="td__url"><%= shorted_url.url %></td>
                     <td class="td__follows"><%= shorted_url.follows %></td>
-                    <td class="td__delete"><a class="btn" href="<%= shorten_url + '?id=' + shorted_url.id.to_s %>" data-method="delete">Delete</a></td>
+                    <td class="td__delete"><a class="btn__style" href="<%= shorten_url + '?id=' + shorted_url.id.to_s %>" data-method="delete">Delete</a></td>
                   </tr>
               <% end %>
               </tbody>
             </table>
         </div>
            <div class="<% if @user_shorted_urls.blank? %> wrap-input-expand__hide <% else %> wrap-input-expand__visible <% end %>">
-          <input class="input-xlarge input__expand" id="url_to_expand" type="text" name="url" placeholder="Type shorted url here" rel="tooltip"><input class="btn btn__expand" id="expand_url" type="submit" value="Expand"/>
+          <input class="input-xlarge input__expand" id="url_to_expand" type="text" name="url" placeholder="Type shorted url here" rel="tooltip"><input class="btn__style btn__expand" id="expand_url" type="submit" value="Expand"/>
         </div>
 </div>
 
